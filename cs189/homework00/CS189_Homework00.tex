@@ -1,0 +1,71 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+\section{Probability Potpourri}
+\begin{itemize}
+  \item[1.] We want to prove the covariance matrix $\Sigma$ is always positive semi-definite, i.e. $a^{T}\Sigma a >= 0$ for all $n \times 1$ vectors $a$. Given $\Sigma = E[(Z - \mu)(Z - \mu)^{T}]$, set the following equation:
+  \begin{align*}
+    a^{T}E[(Z - \mu)(Z - \mu)^{T}] a >= 0 \\
+    E[a^{T}(Z - \mu)(Z - \mu)^{T}a] >= 0 \intertext{by linearity of expectation}
+    E[((Z-\mu)a)^{T}((Z-\mu)a)] >= 0 \\
+    E[||(Z - \mu)a||^{2}] >= 0
+    \end{align*}
+
+  \item[2.] Let $W$ represent the event that there is a gust of wind and let $H$ represent the event that the archer hits her target. We know that $P(H|W) = 0.4$, $P(H | W^C) = 0.7$, and $P(W) = 0.3$.
+    \begin{enumerate}
+      \item P(there is gust of wind and she hits target)
+            = $P(W \cap H) \\
+            = P(W) * P(H | W) \\
+            = 0.3 * 0.4 \\
+            = 0.12$
+      \item P(hits the target on the first shot) \\
+            $= P(H) \\
+            = P(H \cap W) + P(H \cap W^C) \\
+            = 0.12 + P(W) * P (H | W^C) \\
+            = 0.12 + 0.7*0.7 \\
+            = 0.62$
+      \item P(hits the target exactly once in two shots) \\
+            =$P(H_{1} \cap H^C_{2}) + P(H^{C}_{1} \cap H_{2}) \\
+            =(0.62)(1-0.62) + (1-0.62)(0.62) \\
+            =0.4712$
+      \item P(there was no gust of wind on an occasion when she missed) \\
+            =$P(W^C | H^C) \\
+            =\frac{P(W^C \cap H^C)}{P(H^C)} \\
+            =\frac{P(W^C)P(H^C | W^C)}{P(H^C)} \\
+            =\frac{0.7 * 0.3}{1-0.62} \\
+            =0.55$
+    \end{enumerate}
+
+  \item[3.] Let $Y$ represent the score of a single strike, or $Y = g(X=x)$ such that
+  \begin{equation*}
+    g(X=x) = \begin{cases}
+            4, & \text{if}~ x\leq \frac{1}{\sqrt{3}} \\
+            3, & \text{if}~ \frac{1}{\sqrt{3}} < x \leq 1 \\
+            2, & \text{if}~ 1 < x \leq \sqrt{3} \\
+            0, & \text{otherwise.}
+           \end{cases}
+  \end{equation*}
+  Find expectation $E[Y] = \int yf(y)dy = \int g(x)f(x)dx = \int_{0}^{\infty}g(x)\frac{2}{\pi (1+x^2)}dx$
+  \begin{align*}
+    &=4 * \frac{2}{\pi}arctan(x) \mid_{0}^{\frac{1}{\sqrt{3}}} + 3 * \frac{2}{\pi}arctan(x) \mid_{\frac{1}{\sqrt{3}}}^{1} + 2 * \frac{2}{\pi}arctan(x) \mid_{1}^{\sqrt{3}}& \\
+    &=4*\frac{2}{\pi}(\frac{\pi}{6} - 0) + 3*\frac{2}{\pi}(\frac{\pi}{4}-\frac{\pi}{6}) + 2*\frac{2}{\pi}(\frac{\pi}{3} - \frac{\pi}{4})& \\
+    &= 2.167&
+  \end{align*}
+\end{itemize}
+\pagebreak
+
+\section{Properties of Gaussians}
+\begin{itemize}
+  \item[1.] We want to prove that $E[e^{\lambda X}] = e^{\sigma^{2}\lambda{2}/2}
+\end{itemize}
+
+\end{document}
