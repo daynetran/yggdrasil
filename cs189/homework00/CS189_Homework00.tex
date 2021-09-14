@@ -67,5 +67,37 @@
 \begin{itemize}
   \item[1.] We want to prove that $E[e^{\lambda X}] = e^{\sigma^{2}\lambda{2}/2}$
 \end{itemize}
+\pagebreak
+
+\section{Linear Algebra Review}
+\begin{itemize}
+  \item[1.] We will prove equivalence between these three different definitions of PSD using a cycle. First, we will prove that given (b), (b) $\implies$ (a).
+  \begin{align*}
+    x^{T}Ax = x^{T}\lambda x = \lambda x^{T}x = \lambda |x|_2 \geq 0 \\
+    \intertext{We have shown that given A has nonnegative eigenvalues (from (b)), we maintain the inequality given in (a).}
+  \end{align*}
+  Second, we will prove that given (a), (a) $\implies$ (c).
+  \begin{align*}
+    x^{T}UU^{T}x = (U^{T}x)^{T}U^{T}x = |U^{T}x|_2 \geq 0
+    \intertext{We have shown that given the inequality in (a), we can find a matrix U from (c) that upholds (a).}
+  \end{align*}
+  Third, we will prove that given (c), (c) $\implies$ (b).
+  \begin{align*}
+    \intertext{A is a symmetric matrix}
+  \end{align*}
+\end{itemize}
+
+\section{Gradients and Norms}
+\begin{itemize}
+  \item[1.] First, we will prove that $\frac{1}{\sqrt{n}}||x||_{2} \leq ||x||_\infty$. We know that $||x||_{\infty} = max(x)$. Let's use the Cauchy-Schwartz inequality to produce an upper bound for $\frac{1}{\sqrt{n}}||x||_{2}$. Let $\mathbf{1}$ be the ones $n \times 1$ vector. The Cauchy-Schwarz inequality states that for all vectors $u$ and $v$ of an inner product space, it is true that
+  \begin{align*}
+    |<u, v>|^{2} &\leq <u,u> \cdot <v,v>& \\
+    |<x, \mathbf{1}>|^2 &\leq <x, x> \cdot <\mathbf{1}, \mathbf{1}>& \\
+    ||x||_{1}^{2} &\leq ||x||_{2}^{2} \cdot n& \\
+    ||x||_{1} &\leq \sqrt{n}||x||_{2}&
+  \end{align*}
+
+  Next, we will prove that $||x||_{\infty} \leq ||x||_{1}$. We know that $||x||_{\infty} = \text{max}(x)$ and $||x||_{1} = \sum_{i=1}^{n}|x_i|$, which includes the max and is, by default, at least as large as the L-infinity norm.
+\end{itemize}
 
 \end{document}
