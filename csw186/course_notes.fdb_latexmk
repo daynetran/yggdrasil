@@ -1,6 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1631653329 "course_notes.tex" "course_notes.pdf" "course_notes" 1631653329
-  "/etc/texmf/web2c/texmf.cnf" 1630475796 475 c0e671620eb5563b2130f56340a5fde8 ""
+["pdflatex"] 1634085193 "/home/daynetran/yggdrasil/csw186/course_notes.tex" "/home/daynetran/yggdrasil/csw186/course_notes.pdf" "course_notes" 1634085193
+  "/etc/texmf/web2c/texmf.cnf" 1634084055 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/home/daynetran/yggdrasil/csw186/course_notes.aux" 1634085193 416 7734cf8233e97bc4c5af903c15365ce9 ""
+  "/home/daynetran/yggdrasil/csw186/course_notes.tex" 1634085193 1569 fa9773047d45f3f06220e7b267170872 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -23,11 +25,13 @@
   "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1565080000 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb" 1565080000 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1630475824 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1630475836 8255879 19eccbf0c416bf125314d9dc8946fb50 ""
-  "course_notes.aux" 1631653329 416 7734cf8233e97bc4c5af903c15365ce9 "pdflatex"
-  "course_notes.tex" 1631653329 1540 b321036e701ab91c18d19a4abe14b909 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1634084089 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1634084097 8256159 445f57d3b254933056252d5259a8f3b0 ""
+  "course_notes.aux" 1634085193 416 7734cf8233e97bc4c5af903c15365ce9 "pdflatex"
+  "course_notes.tex" 1634085193 1569 fa9773047d45f3f06220e7b267170872 ""
   (generated)
-  "course_notes.log"
   "course_notes.aux"
+  "course_notes.log"
   "course_notes.pdf"
+  "/home/daynetran/yggdrasil/csw186/course_notes.log"
+  "/home/daynetran/yggdrasil/csw186/course_notes.pdf"
