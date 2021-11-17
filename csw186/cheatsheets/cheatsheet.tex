@@ -196,16 +196,16 @@ Deadlock avoidance succeeds b/c the same priority scheme applies on all lock con
 \textbf{Compatibility Between Locks}:\\
 \includegraphics[width=0.2\textwidth]{images/CompatibilityMatrix.png}
 \section{Module 9: Recovery}
-\textbf{Sources of Aborted Transactions} 1) User explicitly issues rollback; 2) Deadlock; 3) System crash; 4) Integrity constraint violation
+\textbf{Sources of Aborted Xacts} 1) User explicitly issues rollback; 2) Deadlock; 3) System crash; 4) Consistency, i.e. integrity constraint violation
 \ruler
-\textbf{Sources of DBMS Crash} 1) Operator Error; 2) Configuration Error; 3) Soft/Hardware failure
-\ruler 
-\textbf{No Steal / Force}: This simple yet flawed policy doesn't allow buffer-pool frames with uncommited updates to be replaced (pinned pages limit buffer replacement $\rightarrow$ poor performance) and makes sure every update is "forced" onto the DB disk before commit (lots of commits mean lots of unnecessary I/Os $\rightarrow$ poor performance).
+\textbf{Sources of DBMS Crashes} 1) Operator Error; 2) Configuration Error; 3) Soft/Hardware failure
 \ruler
-\textbf{Steal / No Force}:
+\textbf{Force / No Force}: Ensures durability; When a Xact has finished, \textit{Force} pushes all modified data pages to disk before the Xact commits. Could be unnecessary because since other Xacts likely also are modifying the in-memory page, we write to disk repeatedly; \textit{No-Force} writes to disk only when the page needs to be evicted from the buffer pool; complicates durability; if DB  crashes after transaction commits, dirty pages may not been written to disk and are lost from memory but will be resolved by redoing operations during recovery.
+\ruler
+\textbf{Steal / No Steal}: Ensures atomicity; \textit{No-Steal} does not allow pages to be evicted from memory (written to disk and saved) until the Xact commits; \textit{Steal} allows modified pages to be written to disk before a Xact finishes; the DB can \textit{steal} pages before a Xact has even finished; complicates atomicity the DB is left in an intermediate state) but will be resolved by undoing bad operations during recovery.
 \ruler
 \textbf{ARIES - Analysis}: Rebuild what the Xact Table and the Dirty Page Table looked like at the time of the crash. Scan all log records from the start.\\
-1. On any record that is not an END record: add the Xact to the Xact Table (if necessary). Set the lastLSN of the transaction to the LSN of the record you are on.\\
+1. On any record that is not an END record: add the Xact to the Xact Table (if necessary). Set the lastLSN of the Xact to the LSN of the record you are on.\\
 2. If the record is a COMMIT or an ABORT record, change the status of the Xact in the Xact table accordingly.\\
 3. If the record is an UPDATE record, if the page is not in the DPT add the page to the DPT and set recLSN equal to the LSN.\\
 4. If the record is an END record, remove the Xact from the Xact Table.
@@ -214,7 +214,7 @@ Deadlock avoidance succeeds b/c the same priority scheme applies on all lock con
 \ruler
 \textbf{ARIES - Redo}: Ensures durability. Starts at the smallest recLSN in the DPT b/c that is the first op that may not have made it to disk. Will redo all UPDATE and CLR ops unless one of the following conditions is met:\\
 \-\hspace{0.5cm} 1. The page is not in the DPT. If the page is not in the DPT, it implies that all changes have already been flushed to disk.\\
-\-\hspace{0.5cm} 2. recLSN > LSN. The first update that dirtied the page occurred after this operation. Implies that the operation we are currently at has already made it to disk, other wise it woudl be the recLSN.\\
+\-\hspace{0.5cm} 2. recLSN $\geq$ LSN. The first update that dirtied the page occurred after this operation. Implies that the operation we are currently at has already made it to disk, other wise it woudl be the recLSN.\\
 \-\hspace{0.5cm} 3. pageLSN (disk) $\geq$ LSN. If the most recent update to the page that made it to disk occurred after the current operation, then we know the current operation must have made it to disk.
 \ruler
 \textbf{ARIES - Undo}: Ensures atomicity; starts at the end of the log; undoes every UPDATE for each Xact that was active (running/aborting) at the time of the crash so we do not leave the state in an intermediate state. Will not undo UPDATE if it already has been undone and has a CLR record already in the log for that UPDATE. For every UPDATE undone, we write a corresponding CLR record to the log. It will have an additional field, undoNextLSN, that stores the LSn of the next operation to be undone for that Xact (coming from the prevLSN of the operation that is being undone). Once all undoing operations for a Xact are completed, write the END record for that Xact to the log.

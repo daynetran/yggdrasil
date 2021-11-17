@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1636767669 "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.tex" "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf" "cheatsheet" 1636768393
+["pdflatex"] 1637120165 "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.tex" "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf" "cheatsheet" 1637120165
   "/etc/texmf/web2c/texmf.cnf" 1634084055 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.aux" 1636767670 502 f1224d81cd8b8b50bfa17fdb615f89eb ""
-  "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.tex" 1636768393 16191 358183704e2941e67d33433a83c739ce ""
+  "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.aux" 1637120165 502 f1224d81cd8b8b50bfa17fdb615f89eb ""
+  "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.tex" 1637120164 16821 aa1106b8166911d841e9354b1116d795 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -67,14 +67,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1634084089 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1634084097 8256159 445f57d3b254933056252d5259a8f3b0 ""
-  "cheatsheet.aux" 1636767670 502 f1224d81cd8b8b50bfa17fdb615f89eb "pdflatex"
-  "cheatsheet.tex" 1636768393 16191 358183704e2941e67d33433a83c739ce ""
+  "cheatsheet.aux" 1637120165 502 f1224d81cd8b8b50bfa17fdb615f89eb "pdflatex"
+  "cheatsheet.tex" 1637120164 16821 aa1106b8166911d841e9354b1116d795 ""
   "images/CompatibilityMatrix.png" 1636751572 195756 31160501c28784fa15953bce95aa77ee ""
   "images/SerializabiltySchedulePIcture.png" 1636749044 260183 adae261c48b7ab24de7adde6eac9c9ea ""
   "math_commands.tex" 1636654943 1157 63ed78dc0f73e9896a8c5fab33137b62 ""
   (generated)
-  "cheatsheet.aux"
   "cheatsheet.log"
   "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf"
   "cheatsheet.pdf"
+  "cheatsheet.aux"
   "/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.log"
