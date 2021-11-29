@@ -1,0 +1,68 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+\section{Multivariate Gaussians: A Review}
+\textbf{We want to determine whether $Z_{1} = X_{1}$ and $Z_{2} = X_{2}$ are jointly Gaussian and calculate their JG covariance matrix.} \\
+Because $X_1$ and $X_2$ are each a standard normal RV, we already know that $Z_1$ and $Z_2$ are each marginally Gaussian. Because $X_1$ and $X_2$ are independent, $Z_{1}|Z_{2} = Z_{1}$, which is Gaussian/standard normal. By symmetry, $Z_{2}|Z_{1}$ is also Gaussian/standard normal. Thus, we have satisfied both conditions that allow for $Z \in \mathbb{R}^{2}$ to be jointly Gaussian. Let us now calculate the covariance matrix.
+\begin{align*}
+  \Sigma_{Z} &= \begin{bmatrix}
+                  \Sigma_{XX} & \Sigma_{XY} \\
+                  \Sigma_{YX} & \Sigma_{YY} \\
+                \end{bmatrix}& \\
+             &= \begin{bmatrix}
+                  1 & 0 \\
+                  0 & 1 \\
+                \end{bmatrix}& \\
+            &\text{since $X_1$ and $X_2$ are independent and standard normal.}&
+\end{align*}
+\textbf{We want to determine whether $Z_{1} = X_{1}$ and $Z_{2} = X_{1} + X_{2}$ are jointly Gaussian and calculate their JG covariance matrix.} \\
+We can use the second characterization - a JG RV $Z \in \mathbb{R}^{2}$ can be written as $Z = AX$ where $A \in \mathbb{R}^{2 \times 2}$ is a transition matrix and $X \in \mathbb{R}^{2}$ is a collection of i.i.d. standard normal RVs. We can decompose $Z = (X_{1} \; X_1 + X_2)^{T}$ into
+\begin{align*}
+  Z &= \begin{pmatrix}
+          1 & 0 \\
+          1 & 1
+       \end{pmatrix}
+       \begin{pmatrix}
+         X_1 \\
+         X_2
+       \end{pmatrix}
+\end{align*}
+Let us now calculate the covariance matrix.
+\begin{align*}
+  \Sigma_{Z} &= \begin{bmatrix}
+                  \Sigma_{X_{1}X_{1}} & \Sigma_{X_1\; X_1 + X_2} \\
+                  \Sigma_{X_1 + X_2\; X_1} & \Sigma_{X_1 + X_2 \; X_1 + X_2} \\
+                \end{bmatrix}& \\
+  \Sigma_{X_1\; X_1 + X_2} &= E[(X_1 - E(X_1))(X_1 + X_2 - E(X_1 + X_2))]&\\
+                           &= E[(X_1)(X_1 + X_2)]& \\
+                           &= E[X_1^2] + E[X_{1}X_{2}] \\
+                           &= \sigma^2_{X_1} + E[X_1]^2 + E[X_{1}]E[X_{2}] \; \text{because $X_1$ and $X_2$ are independent.}\\
+                           &= 1 + 0^2 + 1 \cdot 1 \\
+  \Sigma_{X_1\; X_1 + X_2} &= 2& \\
+  \Sigma_{Z} &= \begin{bmatrix}
+                  1 & 2 \\
+                  2 & 2 \\
+                \end{bmatrix}&
+\end{align*}
+\textbf{We want to determine whether $Z_{1} = X_{1}$ and $Z_{2} = -X_{1}$ are jointly Gaussian and calculate their JG covariance matrix.}
+Again, we can use the second characterization - a JG RV $Z \in \mathbb{R}^{2}$ can be written as $Z = AX$ where $A \in \mathbb{R}^{2 \times 2}$ is a transition matrix and $X \in \mathbb{R}^{2}$ is a collection of i.i.d. standard normal RVs. We can decompose $Z = (X_{1} \; X_1 + X_2)^{T}$ into
+\begin{align*}
+  Z &= \begin{pmatrix}
+          1 & 0 \\
+          0 & -1
+       \end{pmatrix}
+       \begin{pmatrix}
+         X_1 \\
+         X_1
+       \end{pmatrix}
+\end{align*}
+\end{document}
