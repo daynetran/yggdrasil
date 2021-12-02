@@ -51,6 +51,20 @@ GROUP BY $<$columns$>$ \\
 HAVING $<$ predicate$>$ \\
 ORDER BY $<$columns$>$ \\
 LIMIT $<$num$>$
+\ruler
+\textbf{Logical Processing Order}\\
+1. FROM $<$table$>$ \\
+2. [WHERE $<$predicate$>$] \\
+3. [GROUP BY $<$column list$>$] \\
+4. [HAVING $<$predicate$>$] \\
+5. SELECT $<$column list$>$ \\
+6. [DISTINCT]5\\
+7. [ORDER BY $<$column list$>$ [DESC/ASC]] \\
+8. [LIMIT $<$amount$>$] \\
+DBMS may execute a query in an equivalent but different order
+For multi-table queries: perform joins with FROM
+\ruler
+\textbf{String Comparison}: For LIKE, '$\_$' means any single character; '$\%$ means zero, one, or more characters
 \section{Module 2: Disk, Buffers, Files}
 \section{Module 3: Indices and B+ Trees}
 \section{Module 4: Buffer Mgnmt and Relational Algebra}
