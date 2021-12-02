@@ -220,5 +220,10 @@ Deadlock avoidance succeeds b/c the same priority scheme applies on all lock con
 \textbf{ARIES - Undo}: Ensures atomicity; starts at the end of the log; undoes every UPDATE for each Xact that was active (running/aborting) at the time of the crash so we do not leave the state in an intermediate state. Will not undo UPDATE if it already has been undone and has a CLR record already in the log for that UPDATE. For every UPDATE undone, we write a corresponding CLR record to the log. It will have an additional field, undoNextLSN, that stores the LSn of the next operation to be undone for that Xact (coming from the prevLSN of the operation that is being undone). Once all undoing operations for a Xact are completed, write the END record for that Xact to the log.
 
 \section{Module 10: Database Design}
+
+\section{Module 11: Parallel Query Processing}
+\section{Module 12: Distributed Transactions}
+\section{Module 13: Non-Relational Data Models and NoSQL}
+\section{Module 14: MapReduce and Spark}
 \end{multicols*}
 \end{document}
