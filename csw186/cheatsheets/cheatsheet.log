@@ -1,51 +1,52 @@
-<<<<<<< Updated upstream
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.21)  29 NOV 2021 21:09
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.1)  1 DEC 2021 15:43
->>>>>>> Stashed changes
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.12.1)  1 DEC 2021 16:41
 entering extended mode
-**c:/Users/dayne/GitHub/yggdrasil/csw186/cheatsheets/cheatsheet.tex
-(c:/Users/dayne/GitHub/yggdrasil/csw186/cheatsheets/cheatsheet.tex
-LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18> (C:\Users\dayne\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
-Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(C:\Users\dayne\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
-File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.tex
+(/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
-\c@part=\count179
-\c@section=\count180
-\c@subsection=\count181
-\c@subsubsection=\count182
-\c@paragraph=\count183
-\c@subparagraph=\count184
-\c@figure=\count185
-\c@table=\count186
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
-\bibindent=\dimen138
-) (C:\Users\dayne\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\multicol.sty
+\bibindent=\dimen134
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
-\c@tracingmulticols=\count187
-\mult@box=\box47
-\multicol@leftmargin=\dimen139
-\c@unbalance=\count188
-\c@collectmore=\count189
-\doublecol@number=\count190
-\multicoltolerance=\count191
-\multicolpretolerance=\count192
-\full@width=\dimen140
-\page@free=\dimen141
-\premulticols=\dimen142
-\postmulticols=\dimen143
+\c@tracingmulticols=\count175
+\mult@box=\box45
+\multicol@leftmargin=\dimen135
+\c@unbalance=\count176
+\c@collectmore=\count177
+\doublecol@number=\count178
+\multicoltolerance=\count179
+\multicolpretolerance=\count180
+\full@width=\dimen136
+\page@free=\dimen137
+\premulticols=\dimen138
+\postmulticols=\dimen139
 \multicolsep=\skip49
 \multicolbaselineskip=\skip50
-\partial@page=\box48
-\last@line=\box49
-\maxbalancingoverflow=\dimen144
-\mult@rightbox=\box50
-\mult@grightbox=\box51
-\mult@gfirstbox=\box52
-\mult@firstbox=\box53
+\partial@page=\box46
+\last@line=\box47
+\maxbalancingoverflow=\dimen140
+\mult@rightbox=\box48
+\mult@grightbox=\box49
+\mult@gfirstbox=\box50
+\mult@firstbox=\box51
+\@tempa=\box52
+\@tempa=\box53
 \@tempa=\box54
 \@tempa=\box55
 \@tempa=\box56
@@ -81,32 +82,27 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \@tempa=\box86
 \@tempa=\box87
 \@tempa=\box88
-\@tempa=\box89
-\@tempa=\box90
-\c@minrows=\count193
-\c@columnbadness=\count194
-\c@finalcolumnbadness=\count195
-\last@try=\dimen145
-\multicolovershoot=\dimen146
-\multicolundershoot=\dimen147
-\mult@nat@firstbox=\box91
-\colbreak@box=\box92
-\mc@col@check@num=\count196
-) (C:\Users\dayne\AppData\Local\Programs\MiKTeX\tex/latex/latex-tools\calc.sty
+\c@minrows=\count181
+\c@columnbadness=\count182
+\c@finalcolumnbadness=\count183
+\last@try=\dimen141
+\multicolovershoot=\dimen142
+\multicolundershoot=\dimen143
+\mult@nat@firstbox=\box89
+\colbreak@box=\box90
+\mc@col@check@num=\count184
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count197
-\calc@Bcount=\count198
-\calc@Adimen=\dimen148
-\calc@Bdimen=\dimen149
+\calc@Acount=\count185
+\calc@Bcount=\count186
+\calc@Adimen=\dimen144
+\calc@Bdimen=\dimen145
 \calc@Askip=\skip51
 \calc@Bskip=\skip52
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count199
+\calc@Ccount=\count187
 \calc@Cskip=\skip53
-<<<<<<< Updated upstream
-) (C:\Users\dayne\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
-=======
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
@@ -323,11 +319,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -336,14 +332,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <images/SerializabiltySchedulePIcture.png, id=15, 575.14874pt x 375.4025pt>
 File: images/SerializabiltySchedulePIcture.png Graphic file (type png)
 <use images/SerializabiltySchedulePIcture.png>
-Package pdftex.def Info: images/SerializabiltySchedulePIcture.png  used on input line 180.
+Package pdftex.def Info: images/SerializabiltySchedulePIcture.png  used on input line 192.
 (pdftex.def)             Requested size: 189.70874pt x 123.82019pt.
 <images/CompatibilityMatrix.png, id=17, 357.335pt x 229.35687pt>
 File: images/CompatibilityMatrix.png Graphic file (type png)
 <use images/CompatibilityMatrix.png>
-Package pdftex.def Info: images/CompatibilityMatrix.png  used on input line 197.
+Package pdftex.def Info: images/CompatibilityMatrix.png  used on input line 209.
 (pdftex.def)             Requested size: 151.76468pt x 97.41063pt.
- [2 </home/daynetran/yggdrasil/csw186/cheatsheets/images/SerializabiltySchedulePIcture.png> </home/daynetran/yggdrasil/csw186/cheatsheets/images/CompatibilityMatrix.png>] (/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.aux) ) 
+ [2 </home/daynetran/yggdrasil/csw186/cheatsheets/images/SerializabiltySchedulePIcture.png> </home/daynetran/yggdrasil/csw186/cheatsheets/images/CompatibilityMatrix.png>] [3] (/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.aux) ) 
 Here is how much of TeX's memory you used:
  3355 strings out of 481239
  44746 string characters out of 5920377
@@ -351,13 +347,12 @@ Here is how much of TeX's memory you used:
  18578 multiletter control sequences out of 15000+600000
  537411 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,6n,27p,760b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,5n,27p,760b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on /home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf (2 pages, 611708 bytes).
+Output written on /home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf (3 pages, 617660 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
->>>>>>> Stashed changes
