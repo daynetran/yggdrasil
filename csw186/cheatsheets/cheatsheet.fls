@@ -93,9 +93,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
 OUTPUT /home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti8.tfm
 INPUT /home/daynetran/yggdrasil/csw186/cheatsheets/images/SerializabiltySchedulePIcture.png
 INPUT /home/daynetran/yggdrasil/csw186/cheatsheets/images/SerializabiltySchedulePIcture.png
 INPUT /home/daynetran/yggdrasil/csw186/cheatsheets/images/SerializabiltySchedulePIcture.png

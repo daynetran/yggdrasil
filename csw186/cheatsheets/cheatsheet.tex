@@ -65,10 +65,25 @@ DBMS may execute a query in an equivalent but different order
 For multi-table queries: perform joins with FROM
 \ruler
 \textbf{String Comparison}: For LIKE, '$\_$' means any single character; '$\%$ means zero, one, or more characters
+\ruler
+\textbf{Aggregation Functions}: SUM, AVG, MAX, MIN, COUNT; can only be used in SELECT, else use subqueries
+\ruler
+\textbf{Subqueries}
+\ruler
+\textbf{Cross-Join}: Cartesian product, combines every row from left table with every row from right table, i.e. 'FROM a, b'
+\ruler
+\textbf{Inner Join}: Only outputs shared rows that match on somn column, i.e. 'FROM a INNER JOIN b ON a.aid = b.bid'
+\ruler
+\textbf{Left Outer Join}: Outputs shared rows and also left table rows that do not have any matches with the right table; non-matching rows have  their columns from the right table filled in with NULL, i.e. 'FROM a LEFT OUTER JOIN b ON a.aid = b.bid'
+\ruler
+\textbf{Full Outer Join}: Guarantees that all rows from each table will appear in the output; if a row from either table does not have a match it will still show up in the output and the columns from the other table in the join will be NULL
+\ruler
+\textbf{}
 \section{Module 2: Disk, Buffers, Files}
 \section{Module 3: Indices and B+ Trees}
 \section{Module 4: Buffer Mgnmt and Relational Algebra}
 \section{Module 5: Sorting and Hashing}
+\newpage
 \section{Module 6: Iterators and Joins}
 \textbf{Iterators}:\\
 setup(), init(), next(), close()\\
