@@ -78,13 +78,32 @@ For multi-table queries: perform joins with FROM
 \ruler
 \textbf{Full Outer Join}: Guarantees that all rows from each table will appear in the output; if a row from either table does not have a match it will still show up in the output and the columns from the other table in the join will be NULL
 \ruler
-\textbf{}
+
+% --------------------------------
+
 \section{Module 2: Disk, Buffers, Files}
+Disk $\rightarrow$ Page $\rightarrow$ Record
+\ruler
+\textbf{Heap File}: No particular ordering of pages or of records; can be implemented with Linked List approach or Page Directory approach;
+\ruler
+
+% --------------------------------
+
 \section{Module 3: Indices and B+ Trees}
+
+% --------------------------------
+
 \section{Module 4: Buffer Mgnmt and Relational Algebra}
+
+% --------------------------------
 \section{Module 5: Sorting and Hashing}
+
+% --------------------------------
 \newpage
+% --------------------------------
+
 \section{Module 6: Iterators and Joins}
+
 \textbf{Iterators}:\\
 setup(), init(), next(), close()\\
 useful because it streams data and therefore does not have to use a lot of memory or space to access large amounts of data that might not fit into memory
