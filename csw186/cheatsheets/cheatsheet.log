@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.12)  9 DEC 2021 13:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.12)  15 DEC 2021 10:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -332,24 +332,24 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <images/SerializabiltySchedulePIcture.png, id=18, 575.14874pt x 375.4025pt>
 File: images/SerializabiltySchedulePIcture.png Graphic file (type png)
 <use images/SerializabiltySchedulePIcture.png>
-Package pdftex.def Info: images/SerializabiltySchedulePIcture.png  used on input line 240.
+Package pdftex.def Info: images/SerializabiltySchedulePIcture.png  used on input line 283.
 (pdftex.def)             Requested size: 189.70874pt x 123.82019pt.
 <images/CompatibilityMatrix.png, id=20, 357.335pt x 229.35687pt>
 File: images/CompatibilityMatrix.png Graphic file (type png)
 <use images/CompatibilityMatrix.png>
-Package pdftex.def Info: images/CompatibilityMatrix.png  used on input line 257.
+Package pdftex.def Info: images/CompatibilityMatrix.png  used on input line 300.
 (pdftex.def)             Requested size: 151.76468pt x 97.41063pt.
  [3 </home/daynetran/yggdrasil/csw186/cheatsheets/images/SerializabiltySchedulePIcture.png> </home/daynetran/yggdrasil/csw186/cheatsheets/images/CompatibilityMatrix.png>] (/home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.aux) ) 
 Here is how much of TeX's memory you used:
  3356 strings out of 481239
  44764 string characters out of 5920376
- 304284 words of memory out of 5000000
+ 305284 words of memory out of 5000000
  18579 multiletter control sequences out of 15000+600000
  537411 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  30i,6n,27p,760b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on /home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf (3 pages, 620701 bytes).
+Output written on /home/daynetran/yggdrasil/csw186/cheatsheets/cheatsheet.pdf (3 pages, 624908 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  36 compressed objects within 1 object stream

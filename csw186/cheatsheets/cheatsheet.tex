@@ -86,17 +86,60 @@ Disk $\rightarrow$ Page $\rightarrow$ Record
 \ruler
 \textbf{Heap File}: No particular ordering of pages or of records; can be implemented with Linked List approach or Page Directory approach;
 \ruler
+\textbf{Linked List Impl}: Each data page contains records, a free space tracker, and pointers to the next and previous page; one header page acts as start of file and separates the others into full and free pages; when space is needed, empty pages are allocated and appended to free pages portion; when free data pages become full, they are moved from the free space portion to the front of the full pages portion of the linked list
+\ruler
+\textbf{Page Dir Impl}: Only uses linked list for header pages; each header page contains a pointer to the next header page and its entries contains both a pointer to a data page and teh amount of free space left in the data page; since header pages' entries store pointers to data; the data itself no longer needs to store pointers to neighboring pages; ihserting is much faster
+\ruler
+\textbf{Sorted File}: pages are ordered and records within each page are sorted by key(s); implemented using page directories and enforce an ordering upon data pages; searching takes LogN IOs and insertion on average takes logN + N (N/2 to read and N/2 to write or shift back)
+\ruler
+\textbf{FLR vs VLR}: FLR only contains fixed length fields (int, bool, date) and FLRs w/ same schema have same num of bytes; VLRs contain both fixed and variable length fields (e.g. varchar), resulting in each VLR having potentially diff num of bytes; VLRs store all fixed length fields before variable length fields and use a record header that contains pointers to the end of the variable length fields; every record is uniquely identified by its record id, (page num, record num on page)
+\ruler
+\textbf{Pages w/ Fixed Length Records}: Pages with FLRs always use page headers to store the num of records currently on the page; if page is packed, there is no gaps btwn records; insertion is easy as we  can calculate next avail position using num of existing reocrds and length of each record; if page is unpacked, page header stores additional biptmap that breaks page into slots and tracks which slots are open/taken
+\ruler
+\textbf{Pages w/ Variable Length Records}: Each page has a page footer that maintains a slot directory tracking slot count, a free space pointer, and entries; slot count tracks num of filled/empty slots; free spacep pointer points to next free position within page; each entry in slot directory consists of a (record ptr, record length) pair; if page is unpacked, deletion involves finding record's entry within slot directory and settting both record ptr and record length to null; For future insertions, the record is inserted into the page at the free space pointer and a new
+[pointer, length] pair is set in any available null entry. In the case where there are no null entries, a
+new entry is added to the slot directory for that record. The slot count is used to determine which
+offset the new slot entry should be added at, and then the slot count is incremented. Periodically,
+records will be reorganized into a packed state where deleted records are removed to make space
+for future insertions.; For future insertions, the record is inserted into the page at the free space pointer and a new
+[pointer, length] pair is set in any available null entry. In the case where there are no null entries, a
+new entry is added to the slot directory for that record. The slot count is used to determine which
+offset the new slot entry should be added at, and then the slot count is incremented. Periodically,
+records will be reorganized into a packed state where deleted records are removed to make space
+for future insertions.
+
+
 
 % --------------------------------
 
 \section{Module 3: Indices and B+ Trees}
-
+\textbf{Property 1}:  The number d is the order of a B+ tree. Each node (with the exception of the root node)
+must have $d \leq x \leq 2d$ entries assuming no deletes happen (it’s possible for leaf nodes to end
+up with < d entries if you delete data). The entries within each node must be sorted.
+\ruler
+\textbf{Property 2}: In between each entry of an inner node, there is a pointer to a child node. Since there are at
+most 2d entries in a node, inner nodes may have at most 2d + 1 child pointers. This is also called the tree’s fanout
+\ruler
+\textbf{Property 3}: The keys in the children to the left of an entry must be less than the entry while the keys in
+the children to the right must be greater than or equal to the entry.
+\ruler
+\textbf{Property 4}:All leaves are at the same depth and have between d and 2d entries (i.e., at least half full)
+\ruler
+\textbf{Search}: Execute binary serach on each page for the node split, then follow pointer to next node
+\ruler
+\textbf{Insertion}: 1. Find leaf node L in which value goes into. Traverse down the tree and add the key and record to the leaf node in order. 2. If L overflows (has more than 2d entries), (2a) split L into $L_1$ and $L_2$ and keep d entries in $L_1$ and d+1 entries in $L_2$. (2b) if L was leaf, copy $L_2$'s 1st entry to parent node; if L was not leaf, move $L_2$'s 1st entry into the parent; (2c) adjust pointers; 3. If parent overflows, then recurse 2. on parent (will increase tree height)
+\ruler
+\textbf{Counting IOs}: 1. Read appropriate root-to-leaf path 2. Read appropriate data page(s); if multiple, allocate a read IO for each page; account for clustering for Alt. 2 or 3; 3. Write data page(s), if modifying it; 4. update index page(s) (leaf or inner node).
+\ruler
+\textbf{Counting Example}: For a alt-2 unclustered B+ tree, we want to delete the only 11-year-old from the database. 1 IO for each of teh 2 relevant index pages plus 1 IO to read the dat apge where teh record is (once in memory, we can delete record from page) plus 1 IO to write the modified data page back to disk plus 1 IO to write the modified leaf page to disk.
+\ruler
+\textbf{Alt versions}: l. leaf pages are disk pages, contain records; 2. leaf pages hold pointesr to corresp. records; 3. leaf pages hold lists of ptrs to records
+\ruler
+\textbf{Clustered}: Data pages are sorted on same index on which the B+ tree is built; cheaper IO cost comes from caching as tweo records with close keys likely will be in teh same page, so the second one can be read from the cached page; just need one page to get all records that have a similar key; 1 I/O per page of records rather than 1 I/O per record
+\ruler
+\textbf{Bulk Loading}: 1. Sort data on key the index wil be built on; 2. Fill leaf pages until some fill factor $f$; 3. Add ptr from parent to leaf page. if the parent overflows, follow process similar to insertion; split parent into two nodes and keep $d$ entries in $L_1$ and since a parent node overflowed, move $L_2$'s first entry into the parent; 4. adjust pointers; 
 % --------------------------------
 
-\section{Module 4: Buffer Mgnmt and Relational Algebra}
-
-% --------------------------------
-\section{Module 5: Sorting and Hashing}
 
 % --------------------------------
 \newpage
@@ -278,13 +321,7 @@ Deadlock avoidance succeeds b/c the same priority scheme applies on all lock con
 \-\hspace{0.5cm} 3. pageLSN (disk) $\geq$ LSN. If the most recent update to the page that made it to disk occurred after the current operation, then we know the current operation must have made it to disk.
 \ruler
 \textbf{ARIES - Undo}: Ensures atomicity; starts at the end of the log; undoes every UPDATE for each Xact that was active (running/aborting) at the time of the crash so we do not leave the state in an intermediate state. Will not undo UPDATE if it already has been undone and has a CLR record already in the log for that UPDATE. For every UPDATE undone, we write a corresponding CLR record to the log. It will have an additional field, undoNextLSN, that stores the LSn of the next operation to be undone for that Xact (coming from the prevLSN of the operation that is being undone). Once all undoing operations for a Xact are completed, write the END record for that Xact to the log.
-
-\section{Module 10: Database Design}
-
 \section{Module 11: Parallel Query Processing}
 \section{Module 12: Distributed Transactions}
-
-\section{Module 13: Non-Relational Data Models and NoSQL}
-\section{Module 14: MapReduce and Spark}
 \end{multicols*}
 \end{document}
