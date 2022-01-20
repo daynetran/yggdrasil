@@ -3,13 +3,13 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,textcomp,amssymb,geometry,graphicx,enumerate}
 
-\def\Name{PUT SOMETHING HERE}  % Your name
-\def\SID{PUT SOMETHING HERE}  % Your student ID number
-\def\Homework{n} % Number of Homework
-\def\Session{Spring 2020}
+\def\Name{Dayne Tran}  % Your name
+\def\SID{3034839991}  % Your student ID number
+\def\Homework{00} % Number of Homework
+\def\Session{Spring 2022 }
 
 
-\title{CS170--Spring 2020 --- Homework \Homework Solutions}
+\title{CS170--Spring 2022 --- Homework \Homework}
 \author{\Name, SID \SID}
 \markboth{CS170--\Session\  Homework \Homework\ \Name}{CS170--\Session\ Homework \Homework\ \Name}
 \pagestyle{myheadings}
@@ -29,16 +29,15 @@
 \begin{document}
 \maketitle
 
-Collaborators: PUT SOMETHING HERE (LIST OF YOUR COLLABORATORS, OR WRITE NONE)
+Collaborators: None
 
 \section*{1. Course Syllabus}
 \begin{qparts}
 \item
-YOUR ANSWER GOES HERE
+None.
 
 \item
-YOUR ANSWER GOES HERE
-
+Yes, but anonymously.
 \end{qparts}
 
 
@@ -47,41 +46,62 @@ YOUR ANSWER GOES HERE
 \section*{2.}
 \begin{qparts}
 \item
-YOUR ANSWER GOES HERE
+Midterm 1 is on February 23, 8pm-10pm. Midterm 2 is on April 5, 8pm-10pm. Final is on May 11, 11:30am-2:30pm.
 
 \item
-YOUR ANSWER GOES HERE
+The course staff recommend having the homework finished by 10pm.
 
 \item
-YOUR ANSWER GOES HERE
+``[Course Staff] accept absolutely no submissions after 11:59pm, even after technical issues or emergencies. No exceptions.''
 
 \item
-YOUR ANSWER GOES HERE
+Piazza
 
 \item
-YOUR ANSWER GOES HERE
+I have read and understood the course syllabus and policies.
 
 \end{qparts}
 
 
 \newpage
 \section*{3.}
-YOUR ANSWER GOES HERE
+\begin{qparts}
+\item
+Not OK
+\item
+Not OK
+\item
+Not OK
+\item
+Not OK
+\end{qparts}
 
 
 \newpage
 \section*{4.}
-YOUR ANSWER GOES HERE
-
+Refer to Course Notes page 3, where it is shown that applying limit tests to f and g asymptotics can be used for proofs. Rough draft: define f(n) as $2^n$.\\
+First, we want to prove that for all $c>0$, $f(n)=\Omega(n^c)$, i.e. $n^c$ dominates $f(n)$. We know from lectures and course notes that we can use limit tests to prove dominance.
+\begin{align*}
+    &{(1^+)}^n = \Omega(n^c) \Longleftrightarrow 
+    \lim_{n \to \infty} \frac{(1^+)^n}{n^c} > 0 \text{ for all } c > 0& \\
+    \intertext{Apply L'Hopital's Rule because the immediate result is $\frac{\infty}{\infty}$:}
+    &\lim_{n \to \infty} \frac{\ln 1^+ \cdot {(1^+)}^n}{c \cdot n^{c-1}}&\\
+    \intertext{The result is still $\frac{\infty}{\infty}$, so apply L'Hopital's Rule repeatedly until the following expression appears:}
+    &\lim_{n \to \infty} \frac{{(\ln 1^+)}^{c} \cdot {(1^+)}^n}{c!} = \infty > 0&
+\end{align*}
+Second, we want to prove that for all $\alpha > 1$, $f = O(\alpha ^n)$. Again, using our lecture and course notes, we can make use of limit tests for our proof.
+\begin{align*}
+    {(1^+)}^n &= O(\alpha^n) \Longleftrightarrow \lim_{n \to \infty} \frac{{(1^+)}^n}{\alpha^n} < \infty \text{ for all } \alpha > 1&\\
+    \intertext{We can simplify the limit to get to a determinate result:}
+    \lim_{n \to \infty} \frac{{(1^+)}^n}{\alpha^n} &= \lim_{n \to \infty} \left(\frac{{1^+ \cdot 1^+ \cdot \ldots \cdot 1^+}}{\alpha \cdot \alpha \cdot \ldots \alpha}\right)&\\
+    &= \lim_{n \to \infty} \left(\frac{1^+}{\alpha} \cdot \frac{1^+}{\alpha} \cdot \ldots \cdot \frac{1^+}{\alpha}\right)&\\
+    &= \lim_{n \to \infty} {\left(\frac{1^+}{\alpha}\right)}^n&\\
+    &\leq 1 \text{ since $\frac{1^+}{\alpha} \leq 1$ for $\alpha > 1$.}&\\
+    &<\infty
+\end{align*}
 
 \newpage
 \section*{5.}
 YOUR ANSWER GOES HERE
-
-
-\newpage
-\section*{6.}
-YOUR ANSWER GOES HERE
-
 
 \end{document}
