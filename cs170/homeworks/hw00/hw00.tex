@@ -102,6 +102,14 @@ Second, we want to prove that for all $\alpha > 1$, $f = O(\alpha ^n)$. Again, u
 
 \newpage
 \section*{5.}
-YOUR ANSWER GOES HERE
-
+We want to prove that for any $\epsilon > 0$, we have log $x \in O(x^\epsilon)$.
+\begin{align*}
+    log(x) &= O(x^\epsilon) \Longleftrightarrow \lim_{x \to \infty} \frac{log(x)}{x^\epsilon} < \infty \text{ for all } \epsilon > 0&\\
+    \intertext{Apply L'Hopital's Rule because the immediate result is $\frac{\infty}{\infty}$.}
+    & = \lim_{x \to \infty} \frac{1}{x} \cdot \frac{1}{\epsilon \cdot x^{\epsilon - 1}}& \\
+    \intertext{Plug in $0^+$ for $\epsilon$ since $\epsilon > 0$.}
+    & = \lim_{x \to \infty} \frac{1}{0^{+}x^{0^+}} \\
+    &= \frac{1}{\infty} = 0 < \infty \\
+    &\Longleftrightarrow log(x) = O(x^\epsilon) \text{for all $\epsilon > 0$.}&
+\end{align*}
 \end{document}

@@ -91,18 +91,112 @@ Solve the system of equations $\vec{v}_s = \alpha \vec{v}_{\lambda_1} + \beta  \
 \item
 First, we test for symmetry.
 \begin{align*}
-    \begin{bmatrix}2\\1\end{bmatrix}^T (3\vec{x} + 3\vec{y}) = 6\vec{x} + 3\vec{y} = {(3\vec{x} + 3\vec{y})}^T \begin{bmatrix}2\\1\end{bmatrix}
+    \begin{bmatrix}2\\1\end{bmatrix}^T (3\vec{x} + 3\vec{y}) = 6x_1+3x_2 + 6y_1+3y_2 = {(3\vec{x} + 3\vec{y})}^T \begin{bmatrix}2\\1\end{bmatrix}
 \end{align*}
 Second, we test for linearity.
 \begin{align*}
-    \langle3\vec{x} + 3\vec{y}, \begin{bmatrix}2\\1\end{bmatrix}\rangle =
-    3\langle\vec{x}, \begin{bmatrix}2\\1\end{bmatrix}\rangle + 3\langle\vec{y}, \begin{bmatrix}2\\1\end{bmatrix}\rangle \\
-    = 3(2\vec{x})
+    \langle3\vec{x} + 3\vec{y}, \begin{bmatrix}2\\1\end{bmatrix}\rangle = 6x_1+3x_2 + 6y_1+3y_2 =
+    3\langle\vec{x}, \begin{bmatrix}2\\1\end{bmatrix}\rangle + 3\langle\vec{y}, \begin{bmatrix}2\\1\end{bmatrix}\rangle
 \end{align*}
+Third, we test for positive semi-definiteness.
+\begin{align*}
+    \langle \begin{bmatrix}2\\1\end{bmatrix}, \begin{bmatrix}2\\1\end{bmatrix}\rangle &= 5 > 0& \\
+    \langle 3x+3y, 3x + 3y \rangle 
+    &= \langle 3 \begin{bmatrix}x_1 + y_1\\x_2+y_2\end{bmatrix}, 3 \begin{bmatrix}x_1 + y_1\\x_2+y_2\end{bmatrix}\rangle 
+    = 9(x_1+y_1)^2 + 9(x_2+y_2)^2 > 0&
+\end{align*}
+All three innner product properties hold.
+
+\item
+$2 \cdot 2 + 5 \cdot 5 + 6 \cdot 6 + 2 \cdot 2 = 69$
 \end{qparts}
 
 \newpage
 \section*{5.}
-YOUR ANSWER GOES HERE
+\begin{qparts}
+\item
+Projecting $\vec{x}$ onto $\vec{y}$ means the following:
+\begin{align*}
+    proj_{\vec{y}}\vec{x} = \frac{\langle \vec{y}, \vec{x} \rangle}{\langle \vec{y}, \vec{y} \rangle}\vec{y}
+\end{align*}
+Project $\vec{x}_{sample}$ onto the footprint of Electric Love, $\vec{x}_1$:
+\begin{align*}
+    proj_{\vec{x_1}}\vec{x}_{sample} = \frac{\langle \vec{x}_1, \vec{x}_{sample} \rangle}{\langle \vec{x}_1, \vec{x}_1 \rangle} \vec{x}_1 =
+    \frac{(1 \cdot 2) + (-1 \cdot 0) + (1 \cdot -1) + (-1 \cdot 1)}{(1 \cdot 1) + (-1 \cdot -1) + (1 \cdot 1) + (-1 \cdot -1)} \vec{x}_1= 
+    \frac{0}{4}\vec{x}_1 = \vec{0}
+\end{align*}
+Project $\vec{x}_{sample}$ onto the footprint of She's Electric, $\vec{x}_2$:
+\begin{align*}
+    proj_{\vec{x_2}}\vec{x}_{sample} = \frac{\langle \vec{x}_2, \vec{x}_{sample} \rangle}{\langle \vec{x}_2, \vec{x}_2 \rangle} \vec{x}_2 =
+    \frac{(2 \cdot 2) + (-2 \cdot 0) + (-8 \cdot -1) + (7 \cdot 1)}{(2 \cdot 2) + (-2 \cdot -2) + (-8 \cdot -8) + (7 \cdot 7)} \vec{x}_2= 
+    \frac{19}{128}\vec{x}_2
+\end{align*}
+Project $\vec{x}_{sample}$ onto the footprint of Electric Feel, $\vec{x}_3$:
+\begin{align*}
+    proj_{\vec{x_3}}\vec{x}_{sample} = \frac{\langle \vec{x}_3, \vec{x}_{sample} \rangle}{\langle \vec{x}_3, \vec{x}_3 \rangle} \vec{x}_3 =
+    \frac{(4 \cdot 2) + (1 \cdot 0) + (-2 \cdot -1) + (2 \cdot 1)}{(4 \cdot 4) + (1 \cdot 1) + (-2 \cdot -2) + (2 \cdot 2)} \vec{x}_3= 
+    \frac{12}{25}\vec{x}_3
+\end{align*}
+Now, we find the error $\vec{e} = \vec{x}_{sample} - proj$.
+\begin{align*}
+    e_1 &= \vec{x}_{sample} - proj_{\vec{x_1}}\vec{x}_{sample} = \begin{bmatrix}2&0&-1&1\end{bmatrix}^T& \\
+    e_2 &= \vec{x}_{sample} - proj_{\vec{x_2}}\vec{x}_{sample} = \begin{bmatrix}0.297&0& -0.148& 0.148\end{bmatrix}^T& \\
+    e_3 &= \vec{x}_{sample} - proj_{\vec{x_3}}\vec{x}_{sample} = \begin{bmatrix}0.96&0& -0.48& 0.48\end{bmatrix}^T&
+\end{align*}
+Now, we find the error vector which has the smallest magnitude; the song that corresponds with this minimum-difference vector is likeliest song of the three to be playing according to the sample footprint.
+\begin{align*}
+    ||e_1|| = 2.45 \\
+    ||e_2|| = 0.36 \\
+    ||e_3|| = 1.48
+\end{align*}
+We conclude that the song playing must be Electric Feel.
+\item
+The cross-correlation plot is highest at the 180-second mark, so we believe that to be when the sample was taken.
+\item
+(ii) $\vec{a}_n^T (M M^T)^{-1} M \vec{b}_n$
+\item
+No.
+\item
+Three.
+\end{qparts}
 
+\newpage
+\section*{6.}
+\begin{qparts}
+\item
+Gaussian: 6-second shift is $6s \cdot \frac{300 m}{s} = 1800$ m away. NVA: 300 m away. Charge: 900 m away.
+\item
+$\vec{b}$ aligns most closely with the distances.
+\item
+We can find our location ($x_1, x_2$) using the following system of equations:
+\begin{align*}
+    \begin{pmatrix}
+        2 \frac{\vec{a}_1^T}{v\tau_1} - 2 \frac{\vec{a}_2^T}{v\tau_2} \\
+        2 \frac{\vec{a}_1^T}{v\tau_1} - 2 \frac{\vec{a}_3^T}{v\tau_3}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1 \\
+        x_2
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        v \tau_2 - v \tau_1 + \frac{\vec{{a}_1^T}\vec{a}_1}{v\tau_1} - \frac{\vec{{a}_2^T}\vec{a}_2}{v\tau_2} \\
+        v \tau_3 - v \tau_1 + \frac{\vec{{a}_1^T}\vec{a}_1}{v\tau_1} - \frac{\vec{{a}_3^T}\vec{a}_3}{v\tau_3}
+    \end{pmatrix}
+\end{align*}
+where 1 corresponds to the Gaussian tower, 2 corresponds to the NVA tower, and 3 corresponds to the Charge tower. 
+After plugging everything in and doing arithmetic, we arrive at the two following equations:
+\begin{align*}
+    \frac{32}{\sqrt{72}}x_1 + \frac{22}{\sqrt{72}}x_2 = \sqrt{72} - \sqrt{18}+\frac{53}{\sqrt{18}}-\frac{53}{\sqrt{72}} \\
+    \frac{14}{\sqrt{18}}x_1 + (\frac{4}{\sqrt{18}} - \frac{18}{116})x_2 = \sqrt{116} - \sqrt{18} + \frac{53}{\sqrt{18}} - \frac{81}{\sqrt{116}}
+\end{align*}
+We find that our coordinates are (3.314, -0.775).
+\end{qparts}
+
+\newpage
+\section*{7.}
+\begin{qparts}
+\item
+
+\end{qparts}
 \end{document}
