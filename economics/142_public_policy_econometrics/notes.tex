@@ -1,0 +1,91 @@
+\documentclass[10pt,a4paper, oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+\chapter{Reweighting Methods and the "Propensity Score" Using Logistic Regression}
+Review from last session: We want to run regression on two different groups within our population. We run counterfactuals: What is the outcome for group A if we had the characteristics of group B (and vice-versa)? We can distill our measured gap into the gap between one counterfactual and another. This is a very popular pparoch in labor econmics because we take nonlinear functions and allows us to... Review \textbf{Oaxaca Decomposition}.
+
+\section{Re-weighted counterfactual}
+We have two groups $a$ and $b$. Group $a$ is the reference group.
+\begin{align*}
+    \bar{y}^a = \text{mean of outcome for group $a$} \\
+    \bar{y}^b = \text{mean of outcome for group $b$} \\
+    N^a = \text{num obs in group a} \\
+    \bar{p}_g^a - \frac{N^a_g}{N_a} = \text{fraction of group $a$ in category $g$}
+\end{align*}
+ 
+We define the conunterfactual for group $b$ if this group has the \textit{same distribution across categories} as group $a$:
+\begin{align*}
+    \bar{y}^b_{counter f} = \sum_g{\bar{p}^a_g \bar{y}^b_g} = (\bar{x}^a)'\hat{\beta}^b
+\end{align*}
+
+We can erwright the counterfactual mean as a "reweighted mean" where hte weight for a person $i$ who is a category $g$ is $w_i = w_{g(i)} = N^a_g / N^b_g$
+
+\begin{align*}
+    \bar{y}_{counter f} = \frac{\sum_{i \in b}w_{g_i}y_i}{\sum_{i \in b}w_{g_i}}
+\end{align*}
+
+Consider crazy regression for combined sample:
+\begin{align*}
+    m_i = x'_i\theta + n \text{where $m_i = 1[i \in a]$ and $x'_i = (D_{1i}, D_{2i}, \dots, D_{Gi})$}
+\end{align*}
+We showed that:
+\begin{align*}
+    w_{g(i)} = \frac{\hat{m}_i}{1-\hat{m}_i} = \frac{N^a_g}{N^b_g}
+\end{align*}
+
+When we stack up observations from 2 groups, and fit a model to rpedict who belongs to goup $a$ given the covariates, the predicted porbability is called the \textit{propensity score} or p-score for membership in $a$. So the crazy regression is just a model for the propensity score. 
+Summary of reweighted conunterfactual method: 1. combine groups and fit a model for $p_i = p(m_i = 1 | x-i)$
+
+Method can be used even though the $x'$s are not really discrete categories. Suppose for ample that we have info on eductation and age. We would not necsssarily want to divide the data into 'buckets' with only one year of age and each possible value of education, b/c some of the buckets will be empty. We'd want to smooth across categories in some ways to perform the reweighting. It turns out that using a \textit{flexible estimated propensity score} is the right approach. Fit a model for the propensity score that has dummies for each education, linear and quadratic terms in age, and interactions of the liner and quadaratic age terms with the education dummies.
+
+Card's rule of thumb: $\frac{N }{k} > 1000$. One problem we cna run into is that a simple linear model can predict values outside our (0,1) range. We want to run a logit model, thus, to get reasonable results.
+
+A linear regression model for a 0/1 variable like $m_i$ is known as a linear probability model. Given $m_i \in$ {0, 1}, 
+\begin{align*}
+    E[m_i, x_i] = P(m_i = 1 | x_i) = x'_i\theta
+\end{align*}
+When $x_i$ has a large range, a model like this is less attractive. So instead, assume that
+\begin{align*}
+    E[m_i|x_i] = P(m_i = 1 | x_i) = G(x'_i\theta)
+\end{align*}
+for some function $G$ that maps from ($-\infty, \infty$) to (0, 1). Pick a distribution function; we will run with the logistic model.
+
+\section{Logistic Model}
+suppose there is a "latex index"
+\begin{align*}
+    m_i* = x_i'\theta + \epsilon_i \text{where $\epsilon_i$ is a r.v. with logit dist}
+\end{align*}
+$m_i = 1 \leftrightarrow m_i^{*} > 0$. In this setting, $m_i^*$ represents the tendency of person $i$ to have $m_i = 1$.
+\begin{align*}
+    P(m_i = 1 | x_i) &= P(m_i* > 0|x_i) \\
+                     &= P(x'_i\theta + \epsilon_i > 0)\\
+                     &= P(\epsilon_i > -x'_i\theta)\\
+                     &= 1 - G(-x'_i\theta)\\
+                     &= G(x_i'\theta)\\
+                     &= \frac{e^{x_i\theta}}{1+e^{x_i\theta}}
+\end{align*} 
+
+To find the optimal weights $\hat{\theta}$, we use the log-maximum-likelihood:
+\begin{align*}
+    \frac{1}{N}\sum_i \log P(m_i|x_i, \theta)
+\end{align*}
+
+\begin{align*}
+    P(m_i|x_i, \theta) = G(x'_i\theta)^{m_i}(1- G(x'_i\theta)^{m_i})^{1-m_i} \\
+    \log(P) = m_i \cdot \log G(x'_i\theta) + (1-m_i)\cdot \log (1- G(x'_i\theta)
+\end{align*}
+
+\begin{align*}
+    \delta L / \delta \theta = \frac{1}{N}
+\end{align*}
+counterfactual standard deviation:
+\begin{align*}
+    \sigma_{counterf}^b = \frac{1}{N-1}\frac{\sum_{i \in b}{w_i(y_i - \bar{y}^b_{counterf})^2}}{\sum_{i \in b}w_i}
+\end{align*}
+We can use this approach to estimate the effect of demographic changes on wage inequality. 
+\end{document}
+
