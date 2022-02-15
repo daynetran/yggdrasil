@@ -1,0 +1,52 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage[landscape]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,relsize}
+\usepackage{color,graphicx,overpic}
+
+% Turn off header and footer
+\pagestyle{empty}
+\geometry{top=.25in,left=.25in,right=.25in,bottom=.25in}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{\z@}{3ex}{2ex}
+                       {\normalfont\normalsize\bfseries\textit}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}{2ex}{0.5ex}
+                          {\normalfont\small\bfseries}}
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\newcommand{\ruler}{\\\rule{\columnwidth}{0.25pt}\\}
+
+% For neural net.
+\newcommand{\la}[2]{#1^{(#2)}}
+\newcommand{\nbs}{n^{bs}}
+
+% -----------------------------------------------------------------------
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+% multicol parameters
+% These lengths are set only within the two main columns
+% \setlength{\columnseprule}{0.1pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{0pt}
+\section{Module 1: Simultaneous Equations}
+\section{Module 2: Excise and Tax Incidence}
+\section{Module 3: City Growth}
+\section{Module 4: Binary Choice}
+\section{Module 5: Contingent Valuation}
+\section{Module 6: Model Selection}
+\section{Module 7: Engel Curves, Calorie Demand and Hunger}
+\end{multicols*}
+\end{document}
