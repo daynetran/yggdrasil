@@ -1,0 +1,1 @@
+keep featurize.py in the same directory as the data, and run 'python3 featurize.py' on the spam data to apply our bag-of-words model. Then, open the hw03.ipynb and run the cells to see the answers.
