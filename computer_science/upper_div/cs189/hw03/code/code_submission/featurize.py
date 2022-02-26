@@ -230,23 +230,23 @@ spam_filenames = glob.glob(BASE_DIR + SPAM_DIR + '*.txt')
 spam_corpus = build_corpus(spam_filenames)
 ham_filenames = glob.glob(BASE_DIR + HAM_DIR + '*.txt')
 ham_corpus = build_corpus(ham_filenames)
-
-training_corpus = ham_corpus + spam_corpus
-vectorizor = CountVectorizer(max_features=1000)
-X = vectorizor.fit_transform(training_corpus)
-training_design_matrix = X.toarray()
-
 # Important: the test_filenames must be in numerical order as that is the
 # order we will be evaluating your classifier
 test_filenames = [BASE_DIR + TEST_DIR + str(x) + '.txt' for x in range(NUM_TEST_EXAMPLES)]
 test_corpus = build_corpus(test_filenames)
+training_corpus = ham_corpus + spam_corpus
+total_corpus = training_corpus + test_corpus
+
+vectorizor = CountVectorizer(max_features=1000)
+vectorizor.fit(total_corpus)
+training_design_matrix = vectorizor.transform(training_corpus)
 test_design_matrix = vectorizor.transform(test_corpus)
 
 # X = spam_design_matrix + ham_design_matrix
 Y = np.array([1]*len(ham_corpus) + [0]*len(spam_corpus)).reshape((-1, 1))
 
 file_dict = {}
-file_dict['training_data'] = X
+file_dict['training_data'] = training_design_matrix
 file_dict['training_labels'] = Y
 file_dict['test_data'] = test_design_matrix
 scipy.io.savemat('spam_data.mat', file_dict)
