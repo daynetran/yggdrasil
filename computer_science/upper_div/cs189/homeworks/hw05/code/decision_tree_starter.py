@@ -25,8 +25,8 @@ def w(x):
 h = np.vectorize(w)
 
 class Node:
-    def __init__(self, gini, num_samples, num_samples_per_class, predicted_class):
-        self.gini = gini
+    def __init__(self, surprise, num_samples, num_samples_per_class, predicted_class):
+        self.surprise = surprise
         self.num_samples = num_samples
         self.num_samples_per_class = num_samples_per_class
         self.predicted_class = predicted_class
@@ -40,6 +40,8 @@ class DecisionTree:
         # TODO implement __init__ function
         self.max_depth = max_depth
         self.features = feature_labels
+        self.depth = 0
+        self.root_node = None
 
     @staticmethod
     def information_gain(X, y, thresh):
@@ -87,8 +89,9 @@ class DecisionTree:
         
         '''
         left = X[:,idx] < thresh
-        right = X[:,idx] > thresh
-        
+        X_left, y_left = X[left], y[left]
+        X_right, y_right = X[~left], y[~left]
+        return X_left, y_left, X_right, y_right
 
         
     def fit(self, X, y):
@@ -96,13 +99,50 @@ class DecisionTree:
         '''
         Iterate through features
         '''
+        num_samples_per_class = [np.sum(y == i) for i in range(class_names)]
+        predicted_class = np.argmax(num_samples_per_class)
+        node = Node(
+            surprise=self.entropy(y),
+            num_samples=y.size,
+            num_samples_per_class=num_samples_per_class,
+            predicted_class=predicted_class,
+        )
 
-        return self
+        if self.depth == 0:
+            self.root_node = node
+
+        if self.depth < self.max_depth:
+            best_infogain, best_feat, best_thresh =  0,0,0
+            for k in range(X.shape[1]):
+                x = X[:,k]
+                unique_feat_vals = np.unique(x)
+                thresholds = unique_feat_vals[:-1] + np.diff(unique_feat_vals)/2
+                for t in thresholds:
+                    gain = self.information_gain(x, y, t)
+                    if gain > best_infogain:
+                        best_infogain = gain
+                        best_feat = k
+                        best_thresh = t
+            splits = self.split(X, y, best_feat, best_thresh)
+            node.feature_index = best_feat
+            node.threshold = best_thresh
+            self.depth += 1
+            node.left = self.fit(splits[0], splits[1])
+            node.right = self.fit(splits[2], splits[3])
+        return node
 
     def predict(self, X):
         # TODO implement predict function
-
-        return np.ones(X.shape[0])
+        def predict_pt(self, inputs):
+            """Predict class for a single sample."""
+            node = self.root_node
+            while node.left:
+                if inputs[node.feature_index] < node.threshold:
+                    node = node.left
+                else:
+                    node = node.right
+            return node.predicted_class
+        return [predict_pt(inputs) for inputs in X]
 
 
 class BaggedTrees(BaseEstimator, ClassifierMixin):
