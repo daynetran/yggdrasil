@@ -9,7 +9,11 @@ from scipy import stats
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.model_selection import cross_validate
+from sklearn.metrics import accuracy_score
 import sklearn.tree
+import matplotlib.pyplot as plt
+from rcviz import callgraph, viz
+import pydot
 
 import random
 random.seed(246810)
@@ -34,6 +38,7 @@ class Node:
         self.threshold = 0
         self.left = None
         self.right = None
+        self.best_feat_label = None
 
 class DecisionTree:
     def __init__(self, max_depth=3, feature_labels=None):
@@ -93,13 +98,13 @@ class DecisionTree:
         X_right, y_right = X[~left], y[~left]
         return X_left, y_left, X_right, y_right
 
-        
+    @viz
     def fit(self, X, y):
         # TODO implement fit function
         '''
         Iterate through features
         '''
-        num_samples_per_class = [np.sum(y == i) for i in range(class_names)]
+        num_samples_per_class = [np.sum(y == i) for i in np.unique(y)]
         predicted_class = np.argmax(num_samples_per_class)
         node = Node(
             surprise=self.entropy(y),
@@ -112,7 +117,7 @@ class DecisionTree:
             self.root_node = node
 
         if self.depth < self.max_depth:
-            best_infogain, best_feat, best_thresh =  0,0,0
+            best_infogain, best_feat, best_thresh, best_feat_label =  0,0,0, None
             for k in range(X.shape[1]):
                 x = X[:,k]
                 unique_feat_vals = np.unique(x)
@@ -123,9 +128,12 @@ class DecisionTree:
                         best_infogain = gain
                         best_feat = k
                         best_thresh = t
+                        best_feat_label = self.features[k]
             splits = self.split(X, y, best_feat, best_thresh)
             node.feature_index = best_feat
             node.threshold = best_thresh
+            node.best_feat_label = best_feat_label
+            # print(best_feat_label, best_thresh)
             self.depth += 1
             node.left = self.fit(splits[0], splits[1])
             node.right = self.fit(splits[2], splits[3])
@@ -133,7 +141,7 @@ class DecisionTree:
 
     def predict(self, X):
         # TODO implement predict function
-        def predict_pt(self, inputs):
+        def predict_pt(inputs):
             """Predict class for a single sample."""
             node = self.root_node
             while node.left:
@@ -142,7 +150,9 @@ class DecisionTree:
                 else:
                     node = node.right
             return node.predicted_class
-        return [predict_pt(inputs) for inputs in X]
+
+        return [predict_pt(X[i, :]) for i in range(X.shape[0])]
+
 
 
 class BaggedTrees(BaseEstimator, ClassifierMixin):
@@ -206,6 +216,7 @@ def evaluate(clf):
     return avg_train_accuracy, avg_test_accuracy
 
 
+
 if __name__ == "__main__":
     # dataset = "titanic"
     dataset = "spam"
@@ -245,26 +256,60 @@ if __name__ == "__main__":
         # Load spam data
         path_train = './datasets/spam_data/spam_data.mat'
         data = scipy.io.loadmat(path_train)
-        X = data['training_data']
-        y = np.squeeze(data['training_labels'])
-        Z = data['test_data']
+        spam_X = data['training_data']
+        spam_y = data['training_labels']
+        spam_Z = data['test_data']
         class_names = ["Ham", "Spam"]
 
     else:
         raise NotImplementedError("Dataset %s not handled" % dataset)
 
     print("Features", features)
-    print("Train/test size", X.shape, Z.shape)
 
-    print("\n\nPart 0: constant classifier")
-    print("Accuracy", 1 - np.sum(y) / y.size)
+    # 80/20 training/validation split
+    print(spam_X.shape, spam_y.shape)
+    spam_tuples = np.append(spam_X, spam_y, axis=1)
+    spam_tuples_shuffled = np.random.permutation(spam_tuples)
+    spam_tuples_shuffled = np.random.permutation(spam_tuples)
 
-    # Basic decision tree
+    # divide 80% of data into training data, then assign remaining data as validation data
+    eighty_perc_cutoff = int(spam_tuples_shuffled.shape[0] * 0.8)
+    spam_training_data = spam_tuples_shuffled[0:eighty_perc_cutoff, 0:-1]
+    spam_training_labels = spam_tuples_shuffled[0:eighty_perc_cutoff, -1]
+    spam_validation_data = spam_tuples_shuffled[eighty_perc_cutoff:, 0:-1]
+    spam_validation_labels = spam_tuples_shuffled[eighty_perc_cutoff:, -1]
+
+    # Basic decision tree for SPAM
     print('==================================================')
-    print("\n\nSimplified decision tree")
-    dt = DecisionTree(max_depth=3, feature_labels=features)
-    dt.fit(X, y)
-    print("Predictions", dt.predict(Z)[:100])
+    print("\n\n3.4: Performance Evaluation")
+    spam_dt = DecisionTree(max_depth=5, feature_labels=features)
+    spam_dt.fit(this, X=spam_training_data, y=spam_training_labels)
+    callgraph.render("sort.png")
+    spam_train_predicts = spam_dt.predict(spam_training_data)
+    print("Spam Training Accuracy", accuracy_score(spam_training_labels, spam_train_predicts))
+    spam_val_predicts = spam_dt.predict(spam_validation_data)
+    print("Spam Validation Accuracy", accuracy_score(spam_validation_labels, spam_val_predicts))
+
+    print('==================================================')
+    print("\n\n3.5: Writeup Requirements for the Spam Dataset")
+    tree_depth = [1,3,5,10,20,30]
+    val_scores = [0] * len(tree_depth)
+    c = 0
+    for i in tree_depth:
+        dt = DecisionTree(max_depth=i, feature_labels=features)
+        dt.fit(spam_training_data, spam_training_labels)
+        spam_val_predicts = dt.predict(spam_validation_data)
+        val_scores[c] = accuracy_score(spam_validation_labels, spam_val_predicts)
+        print(f"Spam Validation Accuracy for depth{i}: ", val_scores[c])
+        c += 1
+    plt.plot(tree_depth, val_scores)
+    plt.xlabel("Tree Depth")
+    plt.ylabel("Validation Score")
+    plt.savefig("Depth_Scores.png")
+    print("Plot of Tree Depth vs. Validation Score has been saved to directory.")
+    # print("Predictions", dt.predict(Z)[:100])
     print("Tree structure", dt.__repr__())
 
     # TODO implement and evaluate remaining parts
+
+
